@@ -1,14 +1,9 @@
-$nav-bg-color: transparent;
-$nav-bg-moving-color: rgb(235, 165, 0);
-$board-bg-color:rgba(110, 105, 105, 0.35);
-$article-border-color: wheat;
-$article-border-hover-color: rgb(235, 165, 0);
-$nav-hover-color: rgb(235, 165, 0);
-$article-hover-color :rgb(236, 200, 114);
+@import 'variable';
+@import 'mixin';
 
 /* ----- App.js  ----- */
 body {
-    background: url('../img/bg.jpg')  center center fixed no-repeat;
+    background: $main-bg-img;
     background-size: cover;
     padding: 0px;
     margin: 0px;
@@ -19,14 +14,34 @@ body {
     margin: 0px;
 }
 
+/*-- 因應 <Link /> 使用 --*/
 a {
     text-decoration: none;
     color:inherit;
 }
 
 /* ----- Nav.js  ----- */
+.window-UnMoving {
+    background-color: transparent;
+    position: fixed;
+    top: 0;
+    height: 45px;
+    transition: 0.5s all;
+    width: 100%;
+    z-index: 1;
+    display: flex;
+    align-items: center;
+    ul {
+        li.active {
+            transition: 0.5s all;
+            background-color: $sub-color;
+            box-shadow: 5px 4px 3px rgba(20%,20%,40%,0.5);
+        }
+    }
+}
+
 .window-is-Moving {
-    background-color: $nav-bg-moving-color;
+    background-color: $sub-color;
     position: fixed;
     top: 0;
     height: 45px;
@@ -39,41 +54,21 @@ a {
     ul {
         li.active {
             transition: 0.5s all;
-            color: rgb(0, 116, 189);
+            color: $main-color;
         }
     }
 }
 
-.window-UnMoving {
-    position: fixed;
-    top: 0;
-    height: 45px;
-    background-color: $nav-bg-color;
-    transition: 0.5s all;
-    width: 100%;
-    z-index: 1;
-    display: flex;
-    align-items: center;
-    ul {
-        li.active {
-            transition: 0.5s all;
-            background-color: $nav-hover-color;
-            box-shadow: 5px 4px 3px rgba(20%,20%,40%,0.5);
-        }
-    }
-}
+
 
 ul {
     list-style:none;
     li {
+        @include font(20px, $font-color, bold, monospace);
         text-align: center;
         outline: none;
         display: inline-block;
-        font-family: monospace;
-        font-size: 20px;
-        font-weight: bold;
-        color: white;
-        padding: 13px;
+        padding: 11px;
         &~li {
             cursor: pointer;
             margin-left: 8px;
@@ -83,17 +78,15 @@ ul {
 
 /* ----- Home.js  ----- */
 .page-title {
+    @include font(80px, $font-color, null, (Impact, Charcoal, sans-serif));
     position: relative;
     height: auto;
     width: 800px;
-    border-bottom: 3px solid $article-border-color;
-    border-right: 3px solid $article-border-color;
+    border-bottom: 3px solid $border-color;
+    border-right: 3px solid $border-color;
     margin: 20px;
     padding: 10px;
     box-shadow: 5px 4px 3px rgba(20%,20%,40%,0.5);
-    font-family:Impact, Charcoal, sans-serif;
-    font-size: 80px;
-    color: white;
 }
 
 /* ----- PostList.js  ----- */
@@ -119,22 +112,19 @@ ul {
             position: relative;
             height: 200px;
             width: 200px;
-            border: 3px solid $article-border-color;
+            border: 3px solid $border-color;
             transition: 0.3s all;
             margin: 20px;
             padding: 30px;
             box-shadow: 5px 4px 3px rgba(20%,20%,40%,0.5);
             &:hover {
-                border-color: $article-border-hover-color;
+                border-color: $sub-color;
                 background-color: rgba(235, 165, 0, 0.1);
             }
             &-title {
+                @include font(23px, $font-color, bold, monospace);
                 padding: 5px 8px;
                 height: 50px;
-                font-family: monospace;
-                font-size: 23px;
-                font-weight: bold;
-                color: white;
                 word-break: break-word;
                 text-overflow: ellipsis;
                 overflow: hidden;
@@ -145,30 +135,24 @@ ul {
                 }
             }
             &-text {
+                @include font(13px, $font-color, bold, monospace);
                 padding: 5px 8px;
                 height: 91px;
-                font-family: monospace;
-                font-size: 13px;
-                font-weight: bold;
-                color: white;
                 word-break: break-word;
                 text-overflow: ellipsis;
                 overflow: hidden;
                 &:hover {
-                    color: white;
+                    color: $font-color;
                 }
             }
             &-editor {  
+                @include font(13px, $font-color, bold, monospace);
                 position: absolute;
                 bottom: 25px;
                 right: 25px;
                 padding: 5px 8px;
                 width: 110px;
-                font-family: monospace;
-                font-weight: bold;
-                color: white;
                 word-break: break-word;
-                font-size: 13px;
                 white-space: nowrap;
                 text-overflow: ellipsis;
                 overflow: hidden;
@@ -183,29 +167,24 @@ ul {
     position: relative;
     height: auto;
     width: 950px;
-    border: 3px solid $article-border-color;
+    border: 3px solid $border-color;
     transition: 0.3s all;
     margin: 20px;
     padding: 60px;
     padding-bottom: 140px;
     box-shadow: 5px 4px 3px rgba(20%,20%,40%,0.5);
     &-title {
+        @include font(40px, wheat, bold, monospace);
         padding: 5px 8px;
         height: auto;
-        font-family: monospace;
-        font-size: 40px;
-        font-weight: bold;
-        color: wheat;
         word-break: break-word;
         transition: 0.3s all;
     }
     &-text {
+        @include font(16px, $font-color, null, monospace);
         margin-top: 50px;
         padding: 5px 8px;
         height: auto;
-        font-family: monospace;
-        font-size: 16px;
-        color: white;
         word-break: break-word;
         text-overflow: ellipsis;
         overflow: hidden;
@@ -213,24 +192,22 @@ ul {
         
     }
     &-editor {  
+        @include font(20px, $font-color, bold, monospace);
         position: absolute;
         bottom: 45px;
         right: 40px;
         padding: 5px 8px;
-        font-family: monospace;
-        font-weight: bold;
-        color: white;
         word-break: break-word;
-        font-size: 20px;
     }
 }
 
 /* ----- Write.js  ----- */
 .write-article {
+    @include font(32px, $font-color, bold, monospace);
     position: relative;
     height: auto;
     width: 950px;
-    border: 3px solid $article-border-color;
+    border: 3px solid $border-color;
     transition: 0.3s all;
     margin: 20px;
     padding: 60px;
@@ -239,47 +216,38 @@ ul {
     display: flex;
     justify-content: center;
     flex-direction: column;
-    font-family: monospace;
-    font-weight: bold;
-    font-size: 32px;
-    color: white;
         &-title {
+            @include font(20px, $font-color, bold, monospace);
             transition: 0.7s all;
             outline: none;
             padding:  5px 20px;
             margin-top:8px;
             margin-bottom: 60px;
             background-color: transparent;
-            font-family: monospace;
-            font-weight: bold;
-            color: white;
-            font-size: 20px;
             border: 0px;
             box-shadow: 5px 4px 3px rgba(20%,20%,40%,0.5);
-            border: 3px solid $article-border-color;
+            border: 3px solid $border-color;
             &:focus {
                 background-color: rgba(235, 165, 0, 0.3);
             }
         }
         &-editor {  
+            @include font(20px, $font-color, bold, monospace);
             transition: 0.7s all;
             outline: none;
             margin-top:8px;
             margin-bottom: 60px;
             padding:  5px 20px;
-            font-family: monospace;
-            font-weight: bold;
-            color: white;
-            font-size: 20px;
             background-color: transparent;
             border: 0px;
             box-shadow: 5px 4px 3px rgba(20%,20%,40%,0.5);
-            border: 3px solid $article-border-color;
+            border: 3px solid $border-color;
             &:focus {
                 background-color: rgba(235, 165, 0, 0.3);
             }
         }
         &-text {
+            @include font(16px, $font-color, null, monospace);
             transition: 0.7s all;
             outline: none;
             box-shadow: 5px 4px 3px rgba(20%,20%,40%,0.5);
@@ -288,31 +256,25 @@ ul {
             margin-bottom: 30px;
             padding: 20px;
             height: 500px;
-            font-family: monospace;
-            font-size: 16px;
-            color: white;
             word-break: break-word;
             background-color: transparent;
-            border: 3px solid $article-border-color;
+            border: 3px solid $border-color;
             &:focus {
                 background-color: rgba(235, 165, 0, 0.3);
             }
         }
         &-button {
+            @include font(25px, $font-color, bold, monospace);
             cursor: pointer;
             transition: 0.4s all;
             outline: none;  
             box-shadow: 5px 4px 3px rgba(20%,20%,40%,0.5);
             padding: 30px;
-            font-family: monospace;
-            font-weight: bold;
-            color: white;
-            font-size: 25px;
-            border: 3px solid $article-border-color;
+            border: 3px solid $border-color;
             background-color: transparent;
             &:hover {
-                color: rgb(0, 116, 189);
-                background-color: $nav-hover-color
+                color: $main-color;
+                background-color: $sub-color
             }
         }
 }
