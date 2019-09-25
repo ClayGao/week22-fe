@@ -1,37 +1,52 @@
 import React, {Component} from 'react';
 import './App.scss';
 import Nav from './nav'
+import PostList from './post_list'
 import Post from './post'
 import About from './about'
+import Write from './write'
+import { BrowserRouter as Router, Route, Link } from "react-router-dom";
+
+
 
 class App extends Component {
   constructor(props) {
       super(props)
       this.state = {
           displayMode : 'list', // 預設為 List
+          scrollY : window.scrollY
       }
   }
 
-  handleDisplayMode = mode => {
-      this.setState({ displayMode : mode })
+  componentDidMount() {
+    window.addEventListener("scroll", this.scroll);
+  }
+
+  componentWillUnmount(){
+    window.removeEventListener("scroll", this.scroll);
+  }
+  
+  scroll = () => {
+    this.setState({
+      scrollY : window.scrollY
+    })
   }
 
   render() {
-      const displayMode = this.state.displayMode
+      const {scrollY} = this.state
       return (
+        <Router>
           <div className="App">
-            <div className="test">
-                <iframe frameborder="0" height="100%" width="100%" 
-                  src="https://www.youtube.com/embed/TAIJich73NY?controls=0&modestbranding=1&autoplay=1&loop=1&playlist=TAIJich73NY&allowfullscreen=1" frameborder="0" allow="accelerometer; autoplay; encryptedMedia; gyroscope; pictureInPicture" >
-                </iframe>
-              </div>
-              <Nav handleDisplayMode={this.handleDisplayMode} />
-              
-              <div className="wrapper">
-                      {displayMode === 'list' && <Post />}
-                      {displayMode === 'info' && <About />}
+              <Nav isMove={scrollY}/>
+              <div className="wrapper">     
+                <Route path="/" exact component={PostList} />
+                <Route path="/about" component={About} />
+                <Route path="/list" exact component={PostList} />
+                <Route path="/list/:listId" component={Post} />
+                <Route path="/write" exact component={Write} />
               </div>
           </div>
+        </Router>
       )
   }
 }

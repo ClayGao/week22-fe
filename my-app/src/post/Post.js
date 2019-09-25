@@ -10,34 +10,19 @@ class Post extends Component {
  
     // 串 API 取 JSON 資料
     handleServerData = () => {
-        let url = 'https://jsonplaceholder.typicode.com/posts'
+        const listId = this.props.match.params.listId
+        const url = 'https://qootest.com/posts/' + listId
         fetch(url)
             .then(resp => {
                 return resp.json()
             })
             .then(jsonData => {
-                jsonData.forEach(card => card.isShow) // 多加一個布林值屬性，用以展開文章
                 this.setState({
                     articleData: jsonData
                 })
             })
     }
- 
-    // Show 出指定的文章內容
-    showArticle = id => {
-        const {articleData} = this.state
-        this.setState({
-            articleData: articleData.map(card => {
-                if (card.id === id) {
-                    return {
-                        ...card,
-                        isShow: !card.isShow
-                    } 
-                } return card
-            })
-        })
-    }
- 
+
     componentDidMount() {
         this.handleServerData()
     }
@@ -46,21 +31,18 @@ class Post extends Component {
         const { articleData } = this.state
         return (
             <div  className="board">
-            {articleData.map(card => (
-                <div key={card.id} 
-                    className="article" 
-                    onClick={() => { this.showArticle(card.id) }}>
-                    <div className="article-title">
-                        {card.title}
+                <div key={articleData.id} 
+                    className="single-article" >
+                    <div className="single-article-title">
+                        {articleData.title ? articleData.title : "Loading..."}
                     </div>
-                    {card.isShow && <div className="article-text">
-                        {card.body}
-                    </div>}
-                    <div className="article-editor">
-                        Editor: {card.userId}
+                    <div className="single-article-text">
+                        {articleData.body ? articleData.body : "Please wait :) ..."}
+                    </div>
+                    <div className="single-article-editor">
+                        {"Author:" + articleData.author}
                     </div>
                 </div>
-            ))}
             </div>
         )
     }

@@ -1,4 +1,5 @@
 $nav-bg-color: transparent;
+$nav-bg-moving-color: rgb(235, 165, 0);
 $board-bg-color:rgba(110, 105, 105, 0.35);
 $article-border-color: wheat;
 $article-border-hover-color: rgb(235, 165, 0);
@@ -16,6 +17,11 @@ body {
     margin: 0px;
 }
 
+a {
+    text-decoration: none;
+    color:inherit;
+}
+
 .test {
   position: fixed; 
   z-index: -99; 
@@ -23,25 +29,61 @@ body {
   height: 100%;
 }
 
-nav {
-    height: 30px;
+
+
+.window-is-Moving {
+    background-color: $nav-bg-moving-color;
+    position: fixed;
+    top: 0;
+    height: 45px;
+    width: 100%;
+    transition: 0.5s all;
+    z-index: 1;
+    box-shadow: 0px 4px 3px rgba(20%,20%,40%,0.5);
+    display: flex;
+    align-items: center;
+    ul {
+        li.active {
+            transition: 0.5s all;
+            color: rgb(0, 116, 189);
+        }
+    }
+}
+
+.window-UnMoving {
+    position: fixed;
+    top: 0;
+    height: 45px;
     background-color: $nav-bg-color;
-    span {
+    transition: 0.5s all;
+    width: 100%;
+    z-index: 1;
+    display: flex;
+    align-items: center;
+    ul {
+        li.active {
+            transition: 0.5s all;
+            background-color: $nav-hover-color;
+            box-shadow: 5px 4px 3px rgba(20%,20%,40%,0.5);
+        }
+    }
+}
+
+ul {
+    list-style:none;
+    li {
+        text-align: center;
+        outline: none;
         display: inline-block;
         font-family: monospace;
-        font-size: 16px;
+        font-size: 20px;
         font-weight: bold;
         color: white;
-        margin: 10px;
-        padding: 3px;
-        &~span {
+        padding: 13px;
+        &~li {
             cursor: pointer;
-            margin-left: 15px;
-            &:hover {
-                border-bottom: 2px solid $nav-hover-color;
-            }
+            margin-left: 8px;
         }
-        
     } 
 }
 
@@ -49,67 +91,219 @@ nav {
     margin: 0 auto;
     min-height: 900px;
     height: auto;
-    width: 800px;
+    width: 1200px;
     padding: 30px;
+    //background-color: red;
     .board {
         height: auto;
-        width: 700px;
+        width: 1000px;
         background-color: $board-bg-color;
         margin: 100px auto;
         padding: 20px;
         display: flex;
-        flex-direction: column-reverse;
+        flex-wrap: wrap;
         justify-content: center;
-        align-items: center;
+        box-shadow: 5px 4px 3px rgba(20%,20%,40%,0.5);
         .article {
+            cursor: pointer;
             position: relative;
-            height: auto;
-            width: 675px;
-            border-bottom: 3px solid $article-border-color;
+            height: 200px;
+            width: 200px;
+            border: 3px solid $article-border-color;
             transition: 0.3s all;
-            &~.article {
-                margin-bottom: 50px;
-            }
+            margin: 20px;
+            padding: 30px;
+            box-shadow: 5px 4px 3px rgba(20%,20%,40%,0.5);
             &:hover {
                 border-color: $article-border-hover-color;
+                background-color: rgba(235, 165, 0, 0.1);
             }
             &-title {
-                cursor: pointer;
                 padding: 5px 8px;
+                height: 50px;
                 font-family: monospace;
-                font-size: 30px;
+                font-size: 23px;
                 font-weight: bold;
                 color: white;
                 word-break: break-word;
+                text-overflow: ellipsis;
+                overflow: hidden;
                 transition: 0.3s all;
+                white-space: nowrap;
                 &:hover {
                     color: $article-hover-color;
                 }
             }
             &-text {
                 padding: 5px 8px;
+                height: 91px;
                 font-family: monospace;
-                font-size: 20px;
+                font-size: 13px;
                 font-weight: bold;
                 color: white;
                 word-break: break-word;
+                text-overflow: ellipsis;
+                overflow: hidden;
                 &:hover {
                     color: white;
                 }
             }
             &-editor {  
-                bottom: 5px;
-                float: right;
+                position: absolute;
+                bottom: 25px;
+                right: 25px;
                 padding: 5px 8px;
                 font-family: monospace;
                 font-weight: bold;
                 color: white;
                 word-break: break-word;
-                font-size: 20px;
+                font-size: 13px;
             }
         }
     }
 }
+
+
+.single-article {
+    background-color: rgba(197, 188, 168, 0.1);
+    position: relative;
+    height: auto;
+    width: 950px;
+    border: 3px solid $article-border-color;
+    transition: 0.3s all;
+    margin: 20px;
+    padding: 60px;
+    padding-bottom: 140px;
+    box-shadow: 5px 4px 3px rgba(20%,20%,40%,0.5);
+    &-title {
+        padding: 5px 8px;
+        height: auto;
+        font-family: monospace;
+        font-size: 40px;
+        font-weight: bold;
+        color: wheat;
+        word-break: break-word;
+        transition: 0.3s all;
+    }
+    &-text {
+        margin-top: 50px;
+        padding: 5px 8px;
+        height: auto;
+        font-family: monospace;
+        font-size: 20px;
+        font-weight: bold;
+        color: white;
+        word-break: break-word;
+        text-overflow: ellipsis;
+        overflow: hidden;
+        line-height: 2em;
+        
+    }
+    &-editor {  
+        position: absolute;
+        bottom: 45px;
+        right: 40px;
+        padding: 5px 8px;
+        font-family: monospace;
+        font-weight: bold;
+        color: white;
+        word-break: break-word;
+        font-size: 20px;
+    }
+}
+
+.write-article {
+    position: relative;
+    height: auto;
+    width: 950px;
+    border: 3px solid $article-border-color;
+    transition: 0.3s all;
+    margin: 20px;
+    padding: 60px;
+    padding-bottom: 140px;
+    box-shadow: 5px 4px 3px rgba(20%,20%,40%,0.5);
+    display: flex;
+    justify-content: center;
+    flex-direction: column;
+    font-family: monospace;
+    font-weight: bold;
+    font-size: 32px;
+    color: white;
+        &-title {
+            transition: 0.7s all;
+            outline: none;
+            padding:  5px 20px;
+            margin-top:8px;
+            margin-bottom: 60px;
+            background-color: transparent;
+            font-family: monospace;
+            font-weight: bold;
+            color: white;
+            font-size: 20px;
+            border: 0px;
+            box-shadow: 5px 4px 3px rgba(20%,20%,40%,0.5);
+            border: 3px solid $article-border-color;
+            &:focus {
+                background-color: rgba(235, 165, 0, 0.2);
+            }
+        }
+        &-editor {  
+            transition: 0.7s all;
+            outline: none;
+            margin-top:8px;
+            margin-bottom: 60px;
+            padding:  5px 20px;
+            font-family: monospace;
+            font-weight: bold;
+            color: white;
+            font-size: 20px;
+            background-color: transparent;
+            border: 0px;
+            box-shadow: 5px 4px 3px rgba(20%,20%,40%,0.5);
+            border: 3px solid $article-border-color;
+            &:focus {
+                background-color: rgba(235, 165, 0, 0.2);
+            }
+        }
+        &-text {
+            transition: 0.7s all;
+            outline: none;
+            box-shadow: 5px 4px 3px rgba(20%,20%,40%,0.5);
+            resize : none;
+            margin-top:16px;
+            margin-bottom: 30px;
+            padding: 20px;
+            height: 500px;
+            font-family: monospace;
+            font-size: 20px;
+            font-weight: bold;
+            color: white;
+            word-break: break-word;
+            background-color: transparent;
+            border: 3px solid $article-border-color;
+            &:focus {
+                background-color: rgba(235, 165, 0, 0.2);
+            }
+        }
+        &-button {
+            transition: 0.4s all;
+            outline: none;  
+            box-shadow: 5px 4px 3px rgba(20%,20%,40%,0.5);
+            padding: 30px;
+            font-family: monospace;
+            font-weight: bold;
+            color: white;
+            font-size: 25px;
+            border: 3px solid $article-border-color;
+            background-color: transparent;
+            &:hover {
+                color: rgb(0, 116, 189);
+                background-color: $nav-hover-color
+            }
+        }
+}
+
+
 
 footer {
     padding: 15px;
