@@ -1,11 +1,12 @@
 import React, {Component} from 'react';
-import './App.scss';
+import './scss/App.scss';
 import Nav from './nav'
 import PostList from './post_list'
 import Post from './post'
 import About from './about'
 import Write from './write'
-import { BrowserRouter as Router, Route, Link } from "react-router-dom";
+import Home from './home'
+import { BrowserRouter as Router, Route } from "react-router-dom";
 
 
 
@@ -13,7 +14,7 @@ class App extends Component {
   constructor(props) {
       super(props)
       this.state = {
-          displayMode : 'list', // 預設為 List
+          displayMode : 'list', 
           scrollY : window.scrollY
       }
   }
@@ -27,19 +28,22 @@ class App extends Component {
   }
   
   scroll = () => {
-    this.setState({
-      scrollY : window.scrollY
-    })
+    if(!window.scrollY || window.scrollY < 10) {
+      this.setState({
+        scrollY : window.scrollY
+      })
+    }
   }
 
   render() {
+    console.log(this.state.scrollY)
       const {scrollY} = this.state
       return (
         <Router>
           <div className="App">
               <Nav isMove={scrollY}/>
               <div className="wrapper">     
-                <Route path="/" exact component={PostList} />
+                <Route path="/" exact component={Home} />
                 <Route path="/about" component={About} />
                 <Route path="/list" exact component={PostList} />
                 <Route path="/list/:listId" component={Post} />

@@ -1,10 +1,11 @@
 import React, {Component} from 'react';
+import ReactMarkdown from 'react-markdown'
 
 class Post extends Component {
     constructor(props) {
         super(props)
         this.state = {
-            articleData: [], // JSON 回傳資料
+            articleData: [], 
         }
     }
  
@@ -32,15 +33,16 @@ class Post extends Component {
         return (
             <div  className="board">
                 <div key={articleData.id} 
-                    className="single-article" >
+                    className="single-article" >        
                     <div className="single-article-title">
                         {articleData.title ? articleData.title : "Loading..."}
                     </div>
-                    <div className="single-article-text">
-                        {articleData.body ? articleData.body : "Please wait :) ..."}
-                    </div>
+                    <ReactMarkdown 
+                        className="single-article-text" 
+                        source={articleData.body ? articleData.body : "Please wait :) ..."} 
+                    />
                     <div className="single-article-editor">
-                        {"Author:" + articleData.author}
+                        {"Author: " + (articleData.author ? articleData.author : "Noname")}
                     </div>
                 </div>
             </div>

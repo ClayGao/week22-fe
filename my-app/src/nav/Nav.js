@@ -1,6 +1,7 @@
 import React, {Component} from 'react';
 import { BrowserRouter as Router, Route, Link } from "react-router-dom";
 
+
 function Tab({ label, to, exact }) {
     return (
       <Route
@@ -20,12 +21,12 @@ const Nav = ({isMove}) => {
         <nav className={isMove ? "window-is-Moving" : "window-UnMoving"}>
             <ul>
                 <li>
-                     Blue Orange
+                    Blue Orange
                 </li>
-                    <Tab exact={true} to="/" label="Home" />
-                    <Tab to="/about" label="About" />
-                    <Tab to="/list" label="List" />
-                    <Tab to="/write" label="Write" />
+                <Tab exact={true} to="/" label="Home" />
+                <Tab to="/about" label="About" />
+                <Tab to="/list" label="List" />
+                <Tab to="/write" label="Write" />
             </ul>
         </nav>
     )

@@ -1,16 +1,14 @@
 import React, {Component} from 'react';
-import { BrowserRouter as Router, Route, Link } from "react-router-dom";
-import { withRouter } from "react-router-dom";
+import { BrowserRouter as Router, Route, Link, withRouter } from "react-router-dom";
 
 class PostList extends Component {
     constructor(props) {
         super(props)
         this.state = {
-            articleData: [], // JSON 回傳資料
+            articleData: [], 
         }
     }
  
-    // 串 API 取 JSON 資料
     handleServerData = () => {
         const url = 'https://qootest.com/posts'
         fetch(url)
@@ -19,7 +17,7 @@ class PostList extends Component {
             })
             .then(jsonData => {
                 this.setState({
-                    articleData: jsonData
+                    articleData: jsonData.reverse()
                 })
             })
     }
@@ -46,7 +44,7 @@ class PostList extends Component {
                         {card.body}
                     </div>
                     <div className="article-editor">
-                        Author: {card.author}
+                        Author: {card.author ? card.author : "Noname"}
                     </div>
                 </div>
             ))}
