@@ -6,26 +6,26 @@ class Home extends Component {
     constructor(props) {
         super(props)
         this.state = {
-            articleData: [], 
+            postListData: [], 
         }
     }
  
-    handleServerData = () => {
+    handlePostListData = () => {
         const url = 'https://qootest.com/posts'
         axios.get(url)
             .then(resp => {
                 this.setState({
-                    articleData: resp.data.slice(resp.data.length - 9, resp.data.length).reverse()
+                    postListData: resp.data.slice(resp.data.length - 9, resp.data.length).reverse()
                 })
             })
     }
  
     componentDidMount() {
-        this.handleServerData()
+        this.handlePostListData()
     }
     
     render(){
-        const { articleData } = this.state
+        const {postListData} = this.state
         const {history} = this.props
         return (
             <div>
@@ -33,8 +33,8 @@ class Home extends Component {
                     <div className="page-title">
                         About me
                     </div>
-                    <div className="single-article" >        
-                        <div className="single-article-text">
+                    <div className="single-post" >        
+                        <div className="single-post-text">
                             Hi, I am Clay 
                             <br />
                             I am Learing Web Frontend Develope and try to bulid my Blog with React and React-router
@@ -49,26 +49,26 @@ class Home extends Component {
                             <br />
                             See you :D
                         </div>
-                        <div className="single-article-editor">
+                        <div className="single-post-editor">
                             Author: ClayGao
                         </div>
                     </div>
                     <div className="page-title">
-                        The Latest Article
+                        The Latest Articles
                     </div>
-                    {articleData.map(card => (
+                    {postListData.map(card => (
                         <div key={card.id} 
-                            className="article" 
+                            className="post" 
                             onClick={() => { 
                                 history.push('/list/' + card.id)
                             }}>
-                            <div className="article-title">
+                            <div className="post-title">
                                 {card.title}
                             </div>
-                            <div className="article-text" >
+                            <div className="post-text" >
                             {card.body}
                             </div>
-                            <div className="article-editor">
+                            <div className="post-editor">
                                 Author: {card.author ? card.author : "Noname"}
                             </div>
                         </div>

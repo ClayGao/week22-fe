@@ -6,40 +6,40 @@ class Post extends Component {
     constructor(props) {
         super(props)
         this.state = {
-            articleData: [], 
+            postData: [], 
         }
     }
  
-    handleServerData = () => {
+    handlePostData = () => {
         const listId = this.props.match.params.listId
         const url = 'https://qootest.com/posts/' + listId
         axios.get(url)
             .then(resp => {
                 this.setState({
-                    articleData: resp.data
+                    postData: resp.data
                 })
             })
     }
 
     componentDidMount() {
-        this.handleServerData()
+        this.handlePostData()
     }
     
     render(){
-        const { articleData } = this.state
+        const { postData } = this.state
         return (
             <div  className="board">
-                <div key={articleData.id} 
-                    className="single-article" >        
-                    <div className="single-article-title">
-                        {articleData.title}
+                <div key={postData.id} 
+                    className="single-post" >        
+                    <div className="single-post-title">
+                        {postData.title}
                     </div>
                     <ReactMarkdown 
-                        className="single-article-text" 
-                        source={articleData.body ? articleData.body : "Loading..."} 
+                        className="single-post-text" 
+                        source={postData.body ? postData.body : "Loading..."} 
                     />
-                    <div className="single-article-editor">
-                        {"Author: " + (articleData.author ? articleData.author : "Noname")}
+                    <div className="single-post-editor">
+                        {"Author: " + (postData.author ? postData.author : "Noname")}
                     </div>
                 </div>
             </div>

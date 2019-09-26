@@ -25,7 +25,7 @@ a {
     background-color: transparent;
     position: fixed;
     top: 0;
-    height: 45px;
+    height: 46px;
     transition: 0.5s all;
     width: 100%;
     z-index: 1;
@@ -44,7 +44,7 @@ a {
     background-color: $sub-color;
     position: fixed;
     top: 0;
-    height: 45px;
+    height: 46px;
     width: 100%;
     transition: 0.5s all;
     z-index: 1;
@@ -64,11 +64,11 @@ a {
 ul {
     list-style:none;
     li {
-        @include font(20px, $font-color, bold, monospace);
+        @include font(18px, $font-color, bold, monospace);
         text-align: center;
         outline: none;
         display: inline-block;
-        padding: 11px;
+        padding: 12px;
         &~li {
             cursor: pointer;
             margin-left: 8px;
@@ -120,19 +120,19 @@ ul {
         flex-direction: row;
         justify-content: center;
         box-shadow: 5px 4px 3px rgba(20%,20%,40%,0.5);
-        .article {
+        .post {
             cursor: pointer;
             position: relative;
             height: 200px;
             width: 200px;
             border: 3px solid $border-color;
-            transition: 5s all;
+            transition: 0.4s all;
             margin: 20px;
             padding: 30px;
             box-shadow: 5px 4px 3px rgba(20%,20%,40%,0.5);
             &:hover {
                 border-color: $sub-color;
-                background-color: rgba(235, 165, 0, 0.1);
+                background-color: rgba(235, 165, 0, 0.2);
             }
             &-title {
                 @include font(23px, $font-color, bold, monospace);
@@ -143,9 +143,6 @@ ul {
                 overflow: hidden;
                 transition: 0.3s all;
                 white-space: nowrap;
-                &:hover {
-                    color: $article-hover-color;
-                }
             }
             &-text {
                 @include font(13px, $font-color, bold, monospace);
@@ -175,7 +172,7 @@ ul {
 }
 
 /* ----- Post.js / About.js ----- */
-.single-article {
+.single-post {
     background-color: rgba(197, 188, 168, 0.1);
     position: relative;
     height: auto;
@@ -224,7 +221,7 @@ ul {
     transition: 0.3s all;
     margin: 20px;
     padding: 60px;
-    padding-bottom: 140px;
+    padding-bottom: 100px;
     box-shadow: 5px 4px 3px rgba(20%,20%,40%,0.5);
     display: flex;
     justify-content: center;
@@ -279,6 +276,7 @@ ul {
         &-button {
             @include font(25px, $font-color, bold, monospace);
             cursor: pointer;
+            margin-top:60px;
             transition: 0.4s all;
             outline: none;  
             box-shadow: 5px 4px 3px rgba(20%,20%,40%,0.5);

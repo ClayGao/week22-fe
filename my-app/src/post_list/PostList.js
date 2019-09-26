@@ -6,49 +6,49 @@ class PostList extends Component {
     constructor(props) {
         super(props)
         this.state = {
-            articleData: [], 
+            postListData: [], 
         }
     }
  
-    handleServerData = () => {
+    handlePostListData = () => {
         const url = 'https://qootest.com/posts'
         axios.get(url)
             .then(resp => {
                 this.setState({
-                    articleData: resp.data.reverse(),
+                    postListData: resp.data.reverse(),
                 })
             })
     }
  
     componentDidMount() {
-        this.handleServerData()
+        this.handlePostListData()
     }
     
     render(){
-        const { articleData} = this.state
+        const {postListData} = this.state
         const {history} = this.props
         return (
             <div  className="board">
             <div className="page-title">
                 Articles
             </div>
-            {!articleData[0] ? 
+            {!postListData[0] ? 
             <div className="loading">
                 Loading... 
             </div> : 
-            articleData.map(card => (
+            postListData.map(card => (
                 <div key={card.id} 
-                    className="article" 
+                    className="post" 
                     onClick={() => { 
                         history.push('/list/id=' + card.id)
                     }}>
-                    <div className="article-title">
+                    <div className="post-title">
                         {card.title}
                     </div>
-                    <div className="article-text">
+                    <div className="post-text">
                         {card.body}
                     </div>
-                    <div className="article-editor">
+                    <div className="post-editor">
                         Author: {card.author ? card.author : "Noname"}
                     </div>
                 </div>

@@ -7,8 +7,8 @@ const About = () => {
             <div className="page-title">
                 About Blog
             </div>
-             <div className="single-article">
-                 <ReactMarkdown className="single-article-text" source="
+             <div className="single-post">
+                 <ReactMarkdown className="single-post-text" source="
                     ## Markdown 語法
                       目前 Markdown 語法還有一些小 Bug 未解，比如說有些字元 (如<ul>) 不能被 render
                     ## <Switch>
@@ -16,7 +16,7 @@ const About = () => {
                     ## Blog 待改進的地方
                       比如說按下發文按鈕之後可以有動畫跳回 /list，這應該也是可以實作的部分
                  " />
-                 <div className="single-article-editor">
+                 <div className="single-post-editor">
                         Author: Clay Gao
                  </div>
              </div>

@@ -11,7 +11,7 @@ class Write extends Component {
         }
     }
     
-    handlePostData = () => {
+    handlePostArticle = () => {
         const url = 'https://qootest.com/posts'
         const data = this.state 
         if (!data.title || !data.author || !data.body) {
@@ -43,7 +43,6 @@ class Write extends Component {
     }
     
     render(){
-        console.log(this.state)
         const {title, author, body} = this.state
         return (
             <div  className="board">
@@ -54,7 +53,7 @@ class Write extends Component {
                     Title: <input type="text" className="write-article-title" value={title} />
                     Your name: <input type="text" className="write-article-editor" value={author} />
                     Content:　<textarea className="write-article-text" value={body}></textarea>
-                    <input type="button" onClick={this.handlePostData} className="write-article-button" value="Send" />
+                    <input type="button" onClick={this.handlePostArticle} className="write-article-button" value="Send" />
                 </form>
             </div>
         )
