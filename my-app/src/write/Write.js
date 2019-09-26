@@ -49,6 +49,9 @@ class Write extends Component {
         const {title, author, body} = this.state
         return (
             <div  className="board">
+                <div className="page-title">
+                    Write Something :D
+                </div>
                 <form className="write-article"  onChange={this.handleInput} >
                     Title: <input type="text" className="write-article-title" value={title} />
                     Your name: <input type="text" className="write-article-editor" value={author} />

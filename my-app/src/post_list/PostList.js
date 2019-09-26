@@ -17,7 +17,7 @@ class PostList extends Component {
             })
             .then(jsonData => {
                 this.setState({
-                    articleData: jsonData.reverse()
+                    articleData: jsonData.reverse(),
                 })
             })
     }
@@ -27,11 +27,18 @@ class PostList extends Component {
     }
     
     render(){
-        const { articleData } = this.state
+        const { articleData} = this.state
         const {history} = this.props
         return (
             <div  className="board">
-            {articleData.map(card => (
+            <div className="page-title">
+                Article
+            </div>
+            {!articleData[0] ? 
+            <div className="loading">
+                Loading... 
+            </div> : 
+            articleData.map(card => (
                 <div key={card.id} 
                     className="article" 
                     onClick={() => { 

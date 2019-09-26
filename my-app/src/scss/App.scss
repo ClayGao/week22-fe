@@ -90,6 +90,19 @@ ul {
 }
 
 /* ----- PostList.js  ----- */
+
+.loading {
+    @include font(20px, $font-color, null, (monospace));
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    position: relative;
+    height: 150px;
+    width: 150px;
+    margin: 20px auto;
+    padding: 70px;
+}
+
 .wrapper {
     margin: 0 auto;
     min-height: 900px;
@@ -113,7 +126,7 @@ ul {
             height: 200px;
             width: 200px;
             border: 3px solid $border-color;
-            transition: 0.3s all;
+            transition: 5s all;
             margin: 20px;
             padding: 30px;
             box-shadow: 5px 4px 3px rgba(20%,20%,40%,0.5);

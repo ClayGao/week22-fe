@@ -28,15 +28,12 @@ class App extends Component {
   }
   
   scroll = () => {
-    if(!window.scrollY || window.scrollY < 10) {
       this.setState({
         scrollY : window.scrollY
       })
-    }
   }
 
   render() {
-    console.log(this.state.scrollY)
       const {scrollY} = this.state
       return (
         <Router>

@@ -9,7 +9,6 @@ class Post extends Component {
         }
     }
  
-    // 串 API 取 JSON 資料
     handleServerData = () => {
         const listId = this.props.match.params.listId
         const url = 'https://qootest.com/posts/' + listId
@@ -35,11 +34,11 @@ class Post extends Component {
                 <div key={articleData.id} 
                     className="single-article" >        
                     <div className="single-article-title">
-                        {articleData.title ? articleData.title : "Loading..."}
+                        {articleData.title}
                     </div>
                     <ReactMarkdown 
                         className="single-article-text" 
-                        source={articleData.body ? articleData.body : "Please wait :) ..."} 
+                        source={articleData.body ? articleData.body : "Loading..."} 
                     />
                     <div className="single-article-editor">
                         {"Author: " + (articleData.author ? articleData.author : "Noname")}

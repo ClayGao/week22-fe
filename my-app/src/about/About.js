@@ -4,6 +4,9 @@ import ReactMarkdown from 'react-markdown'
 const About = () => {
     return ( 
          <div  className="board">
+            <div className="page-title">
+                About Blog
+            </div>
              <div className="single-article">
                  <ReactMarkdown className="single-article-text" source="
                     ## Markdown 語法
