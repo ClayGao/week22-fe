@@ -35,7 +35,7 @@ class App extends Component {
   render() {
       const {scrollY} = this.state
       return (
-        <Router basename="/">
+        <Router basename="/week22/my-app/build">
           <div className="App">
               <Nav isMove={scrollY}/>
               <div className="wrapper">  
