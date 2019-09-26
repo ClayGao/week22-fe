@@ -6,7 +6,7 @@ import Post from './post'
 import About from './about'
 import Write from './write'
 import Home from './home'
-import { BrowserRouter as Router, Route } from "react-router-dom";
+import { BrowserRouter as Router, Route, Switch } from "react-router-dom";
 
 
 
@@ -38,12 +38,14 @@ class App extends Component {
         <Router>
           <div className="App">
               <Nav isMove={scrollY}/>
-              <div className="wrapper">     
-                <Route path="/" exact component={Home} />
-                <Route path="/about" component={About} />
-                <Route path="/list" exact component={PostList} />
-                <Route path="/list/id=:listId" component={Post} />
-                <Route path="/write" exact component={Write} />
+              <div className="wrapper">  
+                <Switch> 
+                  <Route path="/" exact component={Home} />
+                  <Route path="/about" component={About} />
+                  <Route path="/list" exact component={PostList} />
+                  <Route path="/list/id=:listId" component={Post} />
+                  <Route path="/write" exact component={Write} />
+                </Switch>  
               </div>
           </div>
         </Router>
