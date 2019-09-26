@@ -48,6 +48,8 @@ class Home extends Component {
                             So, give me some time
                             <br />
                             See you :D
+                            <br />
+                            Xin Yi Liu go to eat the SHIT :D
                         </div>
                         <div className="single-post-editor">
                             Author: ClayGao
@@ -60,7 +62,7 @@ class Home extends Component {
                         <div key={card.id} 
                             className="post" 
                             onClick={() => { 
-                                history.push('/list/' + card.id)
+                                history.push('/list/id=' + card.id)
                             }}>
                             <div className="post-title">
                                 {card.title}
