@@ -38,12 +38,14 @@ class App extends Component {
         <Router basename="/week22/my-app/build">
           <div className="App">
               <Nav isMove={scrollY}/>
-              <div className="wrapper">  
+              <div className="wrapper"> 
+              <Switch> 
                   <Route path="/" exact component={Home} />
                   <Route path="/about" component={About} />
                   <Route path="/list" exact component={PostList} />
                   <Route path="/list/id=:listId" component={Post} />
                   <Route path="/write" exact component={Write} /> 
+              </Switch>
               </div>
           </div>
         </Router>
