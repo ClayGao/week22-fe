@@ -35,17 +35,15 @@ class App extends Component {
   render() {
       const {scrollY} = this.state
       return (
-        <Router>
+        <Router basename="/">
           <div className="App">
               <Nav isMove={scrollY}/>
               <div className="wrapper">  
-                <Switch> 
                   <Route path="/" exact component={Home} />
                   <Route path="/about" component={About} />
                   <Route path="/list" exact component={PostList} />
                   <Route path="/list/id=:listId" component={Post} />
-                  <Route path="/write" exact component={Write} />
-                </Switch>  
+                  <Route path="/write" exact component={Write} /> 
               </div>
           </div>
         </Router>
