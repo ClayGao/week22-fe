@@ -1,5 +1,6 @@
 import React, {Component} from 'react';
-import ReactMarkdown from 'react-markdown'
+import ReactMarkdown from 'react-markdown';
+import axios from 'axios';
 
 class Post extends Component {
     constructor(props) {
@@ -12,13 +13,10 @@ class Post extends Component {
     handleServerData = () => {
         const listId = this.props.match.params.listId
         const url = 'https://qootest.com/posts/' + listId
-        fetch(url)
+        axios.get(url)
             .then(resp => {
-                return resp.json()
-            })
-            .then(jsonData => {
                 this.setState({
-                    articleData: jsonData
+                    articleData: resp.data
                 })
             })
     }

@@ -1,5 +1,6 @@
 import React, {Component} from 'react';
 import { BrowserRouter as Router, Route, Link, withRouter } from "react-router-dom";
+import axios from 'axios';
 
 class Home extends Component {
     constructor(props) {
@@ -11,13 +12,10 @@ class Home extends Component {
  
     handleServerData = () => {
         const url = 'https://qootest.com/posts'
-        fetch(url)
+        axios.get(url)
             .then(resp => {
-                return resp.json()
-            })
-            .then(jsonData => {
                 this.setState({
-                    articleData: jsonData.slice(jsonData.length - 9, jsonData.length).reverse()
+                    articleData: resp.data.slice(resp.data.length - 9, resp.data.length).reverse()
                 })
             })
     }

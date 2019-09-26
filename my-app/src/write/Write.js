@@ -1,4 +1,5 @@
 import React, {Component} from 'react';
+import axios from 'axios';
 
 class Write extends Component {
     constructor(props) {
@@ -17,19 +18,16 @@ class Write extends Component {
             alert('Write Something :D') 
             return
         }
-        fetch(url, {
-            method: 'POST', 
-            body: JSON.stringify(data), 
-            headers: new Headers({
-              'Content-Type': 'application/json'
-            })
-          }).then(
+        axios.post(url, data)
+        .then(
             this.setState({
                 title:'',
                 author:'',
                 body:''
             })
-          )
+        ).catch(error =>{
+            alert('Failed to post, connect admin please :)')
+        })
     }
     
     

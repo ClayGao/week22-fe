@@ -216,7 +216,7 @@ ul {
 
 /* ----- Write.js  ----- */
 .write-article {
-    @include font(32px, $font-color, bold, monospace);
+    @include font(20px, $font-color, bold, monospace);
     position: relative;
     height: auto;
     width: 950px;
@@ -230,7 +230,7 @@ ul {
     justify-content: center;
     flex-direction: column;
         &-title {
-            @include font(20px, $font-color, bold, monospace);
+            @include font(16px, $font-color, bold, monospace);
             transition: 0.7s all;
             outline: none;
             padding:  5px 20px;
@@ -245,7 +245,7 @@ ul {
             }
         }
         &-editor {  
-            @include font(20px, $font-color, bold, monospace);
+            @include font(16px, $font-color, bold, monospace);
             transition: 0.7s all;
             outline: none;
             margin-top:8px;

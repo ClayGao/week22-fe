@@ -1,5 +1,6 @@
 import React, {Component} from 'react';
 import { BrowserRouter as Router, Route, Link, withRouter } from "react-router-dom";
+import axios from 'axios';
 
 class PostList extends Component {
     constructor(props) {
@@ -11,13 +12,10 @@ class PostList extends Component {
  
     handleServerData = () => {
         const url = 'https://qootest.com/posts'
-        fetch(url)
+        axios.get(url)
             .then(resp => {
-                return resp.json()
-            })
-            .then(jsonData => {
                 this.setState({
-                    articleData: jsonData.reverse(),
+                    articleData: resp.data.reverse(),
                 })
             })
     }
@@ -32,7 +30,7 @@ class PostList extends Component {
         return (
             <div  className="board">
             <div className="page-title">
-                Article
+                Articles
             </div>
             {!articleData[0] ? 
             <div className="loading">
@@ -42,7 +40,7 @@ class PostList extends Component {
                 <div key={card.id} 
                     className="article" 
                     onClick={() => { 
-                        history.push('/list/' + card.id)
+                        history.push('/list/id=' + card.id)
                     }}>
                     <div className="article-title">
                         {card.title}
